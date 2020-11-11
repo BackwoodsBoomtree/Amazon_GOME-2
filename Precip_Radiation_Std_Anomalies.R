@@ -99,9 +99,9 @@ for (i in 1:(nlayers(precip_anom_a))){
 
 
 # Plot basin Scale
-pdf("C:/Russell/Projects/Amazon_GOME-2/Figures/Precip_All_PAR_Anomalies.pdf", width=7.5, height=5, compress=FALSE)
+pdf("C:/Russell/Projects/Amazon_GOME-2/Figures/Precip_PARtoc_Anomalies.pdf", width=7.5, height=5, compress=FALSE)
 
-par(mfrow=c(1,1),oma=c(2.5,2.5,0,2.5))
+par(mfrow=c(1,1),oma=c(2.5,2.5,0.5,2.75))
 xaxis <- c(1:132)
 names <- c("2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017")
 ENSO <- mei_data$MEI
@@ -121,8 +121,8 @@ par(new=T)
 bar <- barplot(precip_basin_anom_timeseries, axes = FALSE, ylim = c(-2.5, 2.5), col = NA, border = NA, ann = FALSE, xaxs = "i", space = 0)
 lines(bar, precip_basin_anom_timeseries, type = "l", col = "#045a8d", lwd = 1.5, ylim = c(-2.5, 2.5), ann = FALSE)
 lines(bar, sw_basin_anom_timeseries, type="l", col="#b30000", lwd=1.5, ylim=c(-2.5, 2.5), ann=FALSE)
-lines(bar, direct_sw_basin_anom_timeseries, type="l", lty=2, col="#ef6548", lwd=1.5, ylim=c(-2.5, 2.5), ann=FALSE)
-lines(bar, diffuse_sw_basin_anom_timeseries, type="l", lty=2, col="#3690c0", lwd=1.5, ylim=c(-2.5, 2.5), ann=FALSE)
+# lines(bar, direct_sw_basin_anom_timeseries, type="l", lty=2, col="#ef6548", lwd=1.5, ylim=c(-2.5, 2.5), ann=FALSE)
+# lines(bar, diffuse_sw_basin_anom_timeseries, type="l", lty=2, col="#3690c0", lwd=1.5, ylim=c(-2.5, 2.5), ann=FALSE)
 
 # x-axis labels, ticks, and title
 axis(side=1, labels=names, tck=0.03, cex.axis=0.85, mgp=c(3,0.3,0), at=c(seq(from=0,to=120,by=12)))
@@ -132,16 +132,17 @@ axis(side=4, mgp=c(3,0.3,0), las=1, tck=0.02, at=c(seq(from=-2,to=2,by=1)), labe
 axis(side=2, tck = 0.03, las=1, mgp=c(3,0.3,0), at=c(seq(from=-3,to=3,by=1)))
 axis(side=2, tck = 0.02, labels=FALSE, c(seq(from=-2.5,to=2.5,by=1)))
 # Build the legend
-legend("topleft", lty=c(1,1,2,2), lwd = c(1.5, 1.5, 1.5, 1.5), horiz=FALSE, col=c("#045a8d", "#b30000", "#ef6548", "#3690c0"), c("Precipitation", expression(paste("PAR"['TOC']*"")),
-       expression(paste("Direct PAR"['TOC']*"")), expression(paste("Diffuse PAR"['TOC']*""))), bty="n", cex=0.85, pt.cex=0.85)
+# legend("topleft", lty=c(1,1,2,2), lwd = c(1.5, 1.5, 1.5, 1.5), horiz=FALSE, col=c("#045a8d", "#b30000", "#ef6548", "#3690c0"), c("Precipitation", expression(paste("PAR"['TOC']*"")),
+#        expression(paste("Direct PAR"['TOC']*"")), expression(paste("Diffuse PAR"['TOC']*""))), bty="n", cex=0.85, pt.cex=0.85)
 # legend("topleft", lty=c(1), lwd = c(1.5), horiz=FALSE, col=c("#045a8d"), c("Precipitation"), bty="n", cex=0.85, pt.cex=0.85)
-# legend("topleft", lty=c(1,1), lwd = c(1.5,1.5), horiz=FALSE, col=c("#045a8d", "#b30000"), c("Precipitation", expression(paste("PAR"['TOC']*""))), bty="n", cex=0.85, pt.cex=0.85)
-legend("topright", fill = c(rgb(255,191,191,max=255), rgb(235,235,235,max=255), rgb(191,191,225,max=255)), c("Warm Phase", "Neutral", "Cool Phase"), bty="n", cex=0.85, pt.cex=0.85)
+legend("topright", lty=c(1,1), lwd = c(1.5,1.5), horiz=FALSE, col=c("#045a8d", "#b30000"), c("Precipitation", expression(paste("PAR"['TOC']*""))), bty="n", cex=0.85, pt.cex=0.85)
+legend("topleft", fill = c(rgb(255,191,191,max=255), rgb(235,235,235,max=255), rgb(191,191,225,max=255)), c("Warm Phase", "Neutral", "Cool Phase"), bty="n", cex=0.85, pt.cex=0.85)
 box()
 
-mtext("Standardized Anomaly", side=4, line=1.75)
+mtext("Standardized Anomaly", side=4, line=2)
 mtext("Multivariate ENSO Index Version 2", side=2, line=1.25)
 mtext(expression(paste("Year")), 1, 1.5, outer=TRUE)
+mtext(expression(paste("Amazon Basin")), 3, -0.5, outer=TRUE)
 
 dev.off()
 
